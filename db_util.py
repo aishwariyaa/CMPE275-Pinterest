@@ -36,7 +36,7 @@ def user_signup(firstName,lastName,emailId,password):
 	return 0
 
 
-def board_details(boardName,boardDesc,category,isPrivate,):
+def board_details(user_id,boardName,boardDesc,category,isPrivate,):
 	print "Create Board"
 
 

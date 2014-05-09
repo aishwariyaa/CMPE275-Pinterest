@@ -21,6 +21,7 @@ def signup():
 	db_util.user_signup(firstName,lastName,emailId,password)
 	return "201 User Login Successful !! "
 
+
 @app.route('/user/<int:user_id>/boards/', methods = ['POST'])
 def boards(user_id):
 	print 'User Id %d' % user_id
@@ -32,10 +33,12 @@ def boards(user_id):
 	db_util.board_details(user_id,boardName,boardDesc,category,isPrivate)
 	# Return List of Allowed Operations
 
-	links = {
-			'url' : '/users/{UserId}/boards/{boardName}',
-			'method': 'GET'
-	}
+	links = {'links' : [
+				{'url' : '/users/{UserId}/boards/{boardName}','method': 'GET'},
+				{'url' : 'users/{UserId}/boards/{boardName}/','method': 'PUT'},
+				{'url' : 'users/{UserId}/boards/{boardName}/','method': 'DELETE'},
+				{'url' : 'users/{UserId}/boards/{boardName}/pins','method': 'POST'}
+			]}
 
 	js= json.dumps(links)
 	resp = Response(js, status=201, mimetype='application/json')
