@@ -42,7 +42,7 @@ def user_signup():
     if (user_id != "0"):
         links = {'links': [
             {'url': '/user/login', 'method': 'POST'},
-        ]}
+        ],'userID' : user_id}
         js = json.dumps(links)
         resp = Response(js, status=201, mimetype='application/json')
         resp.headers['Link'] = 'http://127.0.0.1:5000'
@@ -59,7 +59,7 @@ def login():
         links = {'links': [
             {'url': '/user/{user_id}/boards', 'method': 'GET'},
             {'url': '/user/{user_id}/boards', 'method': 'POST'},
-        ]}
+        ],'userID' : user_id}
         js = json.dumps(links)
         resp = Response(js, status=201, mimetype='application/json')
         resp.headers['Link'] = 'http://127.0.0.1:5000'
